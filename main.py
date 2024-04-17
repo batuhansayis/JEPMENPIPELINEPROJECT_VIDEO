@@ -25,7 +25,7 @@ def newest_video(path):
 # onedrivepath="C:/Users/batuhansayis/Desktop/JOURNALINGSTUDYDATASET"
 
 onedrivepath = "E:/WINDOWS_BACKUP_16042024/Onedrive/JOURNALING_STUDY_DATASET"
-
+manifestfilepath = 'C:/Users/batuhansayis/Desktop/manifestfile'
 
 enter_directory_path = "C:/Users/batuhansayis/Desktop/"
 input_folder_name = "JEPMEN TRIALS FINAL/"
@@ -96,9 +96,22 @@ def movemp4(source_path,destination_path):
             # list_mp4.append(list[i])
             shutil.move(list[i], destination_path)
 
-def cut_video(videofile_name,destination_path):
+
+def get_manifesetfile(no_session, participant_no):
     return_path = os.getcwd()
-    manifest_path = return_path + '\manifest.csv'
+    session_no = ''
+
+    if no_session == 'Session1' or no_session == 'Session3':
+        session_no = '1'
+    elif no_session == 'Session2' or no_session == 'Session4':
+        session_no = '2'
+    manifest_path= manifestfilepath +'/' +participant_no + '_' + session_no + '.csv'
+    os.chdir(return_path)
+    print (manifest_path)
+    return manifest_path
+def cut_video(videofile_name,destination_path,manifest_path):
+    return_path = os.getcwd()
+    # manifest_path = return_path + '\manifest.csv'
     video_path = return_path + '\\' + videofile_name
 
 
@@ -142,13 +155,14 @@ def find_session(no_session,participant_no):
 
         is_journal = isjournalsession()
         if is_journal == 1:
+            manifest_path =get_manifesetfile(no_session, participant_no)
             os.chdir('./' + '0004-Camera')
             print(os.getcwd())
             videofile_name = newest_video('.')
             if videofile_name == 0:
                 print ('no video')
             else:
-                cut_video(videofile_name,destination_path)
+                cut_video(videofile_name,destination_path,manifest_path)
             os.chdir('..')
             os.chdir('..')
         else:
