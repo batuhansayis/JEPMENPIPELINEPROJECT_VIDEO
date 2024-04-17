@@ -5,7 +5,13 @@ import shutil
 
 
 
-
+def newest_journal(path):
+    files = os.listdir(path)
+    paths = [os.path.join(path, basename) for basename in files]
+    paths = filter(lambda x: x.endswith('.docx'), os.listdir('.'))
+    # print (paths)
+    # print (max(paths, key=os.path.getctime))
+    return max(paths, key=os.path.getctime,default=0)
 def newest_video(path):
     files = os.listdir(path)
     paths = [os.path.join(path, basename) for basename in files]
@@ -16,7 +22,11 @@ def newest_video(path):
 
 
 # onedrivepath="C:/Users/batuhansayis/OneDrive - University of Cambridge/JOURNALING STUDY DATASET"
-onedrivepath="C:/Users/batuhansayis/Desktop/JOURNALINGSTUDYDATASET"
+# onedrivepath="C:/Users/batuhansayis/Desktop/JOURNALINGSTUDYDATASET"
+
+onedrivepath = "E:/WINDOWS_BACKUP_16042024/Onedrive/JOURNALING_STUDY_DATASET"
+
+
 enter_directory_path = "C:/Users/batuhansayis/Desktop/"
 input_folder_name = "JEPMEN TRIALS FINAL/"
 output_folder_name = "JEPMENPIPELINEPROJECT/"
@@ -104,6 +114,20 @@ def cut_video(videofile_name,destination_path):
     os.chdir(return_path)
     print (videofile_name)
 
+
+def isjournalsession():
+    os.chdir('./' + '0005-Journaling')
+    print(os.getcwd())
+    journal_name = newest_journal('.')
+
+    if journal_name == 0:
+        print('no journal')
+        result = 0
+    else:
+        print (journal_name)
+        result = 1
+    os.chdir('..')
+    return result
 def find_session(no_session,participant_no):
     name = os.getcwd()
     destination_path= journal_output_directory + '\\' +participant_no +'\\'+no_session
@@ -115,15 +139,21 @@ def find_session(no_session,participant_no):
     if len(matching) == 1:
         result = matching[0]
         os.chdir('./' + result )
-        os.chdir('./' + '0004-Camera')
-        print(os.getcwd())
-        videofile_name = newest_video('.')
-        if videofile_name == 0:
-            print ('no video')
+
+        is_journal = isjournalsession()
+        if is_journal == 1:
+            os.chdir('./' + '0004-Camera')
+            print(os.getcwd())
+            videofile_name = newest_video('.')
+            if videofile_name == 0:
+                print ('no video')
+            else:
+                cut_video(videofile_name,destination_path)
+            os.chdir('..')
+            os.chdir('..')
         else:
-            cut_video(videofile_name,destination_path)
-        os.chdir('..')
-        os.chdir('..')
+            os.chdir('..')
+            os.chdir('..')
     else:
         print('no folder')
 
