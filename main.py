@@ -35,7 +35,7 @@ input_directory_path = enter_directory_path + input_folder_name
 input_directory_path2 = onedrivepath
 main_loop_start_count = 0
 # main_loop_end = 42
-main_loop_end = 1
+main_loop_end = 42
 
 video_splitter_path = 'C:/Users/batuhansayis/Desktop/video-splitter-master'
 journal_output_directory = 'C:' + '\\' +  'Users' + '\\' + 'batuhansayis' + '\\' +  'Desktop' + '\\' + 'JEPMEN_JOURNAL_VIDEO_DATASET'
@@ -143,15 +143,18 @@ def isjournalsession():
     return result
 def find_session(no_session,participant_no):
     name = os.getcwd()
+
     destination_path= journal_output_directory + '\\' +participant_no +'\\'+no_session
 
     listdirectory= ([name for name in os.listdir(".") if os.path.isdir(name)])
 
     matching = [s for s in listdirectory if no_session in s]
+    print (matching)
 
     if len(matching) == 1:
         result = matching[0]
         os.chdir('./' + result )
+        print (os.getcwd())
 
         is_journal = isjournalsession()
         if is_journal == 1:
@@ -167,9 +170,12 @@ def find_session(no_session,participant_no):
             os.chdir('..')
         else:
             os.chdir('..')
-            os.chdir('..')
+            # os.chdir('..')
     else:
         print('no folder')
+
+    print ('batuuuuuuuuuu')
+    print (os.getcwd())
 
 
 for i in range(main_loop_start_count, main_loop_end):

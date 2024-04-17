@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e405818-5077-4f9c-a366-f09aab65ea08" name="Changes" comment="journal olmayan folderlari extract etmiyor videoyu">
+    <list default="true" id="1e405818-5077-4f9c-a366-f09aab65ea08" name="Changes" comment="manifast file reading method changed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -87,12 +87,20 @@
       <option name="project" value="LOCAL" />
       <updated>1713340991885</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="manifast file reading method changed">
+      <created>1713342806342</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713342806342</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="MAIN DATASET te camera manifest.csv eklenmeli&#10;MAIN DATASET one drive olunca copy paste calismiyor&#10;Su anda video cutter works" />
     <MESSAGE value="journal olmayan folderlari extract etmiyor videoyu" />
-    <option name="LAST_COMMIT_MESSAGE" value="journal olmayan folderlari extract etmiyor videoyu" />
+    <MESSAGE value="manifast file reading method changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="manifast file reading method changed" />
   </component>
 </project>
