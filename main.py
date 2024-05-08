@@ -19,6 +19,13 @@ def newest_video(path):
     # print (paths)
     # print (max(paths, key=os.path.getctime))
     return max(paths, key=os.path.getctime,default=0)
+def newest_video2(path):
+    files = os.listdir(path)
+    paths = [os.path.join(path, basename) for basename in files]
+    paths = filter(lambda x: x.startswith('20'), os.listdir('.'))
+    # print (paths)
+    # print (max(paths, key=os.path.getctime))
+    return max(paths, key=os.path.getctime,default=0)
 
 
 # onedrivepath="C:/Users/batuhansayis/OneDrive - University of Cambridge/JOURNALING STUDY DATASET"
@@ -35,7 +42,8 @@ input_directory_path = enter_directory_path + input_folder_name
 input_directory_path2 = onedrivepath
 main_loop_start_count = 0
 # main_loop_end = 42
-main_loop_end = 42
+main_loop_end = 3
+cameratype=2
 
 video_splitter_path = 'C:/Users/batuhansayis/Desktop/video-splitter-master'
 journal_output_directory = 'C:' + '\\' +  'Users' + '\\' + 'batuhansayis' + '\\' +  'Desktop' + '\\' + 'JEPMEN_JOURNAL_VIDEO_DATASET'
@@ -161,7 +169,10 @@ def find_session(no_session,participant_no):
             manifest_path =get_manifesetfile(no_session, participant_no)
             os.chdir('./' + '0004-Camera')
             print(os.getcwd())
-            videofile_name = newest_video('.')
+            if cameratype == 1:
+                videofile_name = newest_video('.') #laptop camera videos (camera1)
+            elif cameratype == 2:
+                videofile_name = newest_video2('.') #head over pepper cameras (camera2)
             if videofile_name == 0:
                 print ('no video')
             else:
