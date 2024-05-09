@@ -33,6 +33,7 @@ def newest_video2(path):
 
 onedrivepath = "E:/WINDOWS_BACKUP_16042024/Onedrive/JOURNALING_STUDY_DATASET"
 manifestfilepath = 'C:/Users/batuhansayis/Desktop/manifestfile'
+manifestfilepath2 = 'C:/Users/batuhansayis/Desktop/manifestfile2'
 
 enter_directory_path = "C:/Users/batuhansayis/Desktop/"
 input_folder_name = "JEPMEN TRIALS FINAL/"
@@ -40,8 +41,8 @@ output_folder_name = "JEPMENPIPELINEPROJECT/"
 output_directory_path = enter_directory_path + output_folder_name
 input_directory_path = enter_directory_path + input_folder_name
 input_directory_path2 = onedrivepath
-main_loop_start_count = 0
-main_loop_end = 42
+main_loop_start_count = 30
+main_loop_end = 31
 # main_loop_end = 3
 cameratype=2
 cropvalue = str(850) + ":" + str(600)+ ":" +str(450) + ":" + str(0)
@@ -138,7 +139,11 @@ def get_manifesetfile(no_session, participant_no):
         session_no = '1'
     elif no_session == 'Session2' or no_session == 'Session4':
         session_no = '2'
-    manifest_path= manifestfilepath +'/' +participant_no + '_' + session_no + '.csv'
+
+    if cameratype == 2:
+        manifest_path = manifestfilepath + '/' + participant_no + '_' + session_no + '.csv'
+    elif cameratype == 1:
+        manifest_path = manifestfilepath2 + '/' + participant_no + '_' + session_no + '.csv'
     os.chdir(return_path)
     print (manifest_path)
     return manifest_path
@@ -150,7 +155,9 @@ def cut_video(videofile_name,destination_path,manifest_path):
 
     os.chdir(video_splitter_path)
     if cameratype == 1:
+        print ('error1')
         os.system("python ffmpeg-split.py -f " + video_path + " -m " + manifest_path)
+        print('error2')
     elif cameratype == 2:
 
         os.system("python ffmpeg-split.py -f " + video_path + " -m " + manifest_path)
@@ -237,10 +244,13 @@ for i in range(main_loop_start_count, main_loop_end):
     print(os.getcwd())
     os.chdir('./' + test[i])
 
-    find_session('Session2',test[i])
-    find_session('Session4',test[i])
-    find_session('Session1',test[i])
-    find_session('Session3',test[i])
+    if main_loop_start_count == 30:
+        find_session('Session1', test[i])
+    else:
+        find_session('Session2',test[i])
+        find_session('Session4',test[i])
+        find_session('Session1',test[i])
+        find_session('Session3',test[i])
 
     os.chdir('..')
 
