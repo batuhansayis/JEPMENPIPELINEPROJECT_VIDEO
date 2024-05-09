@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e405818-5077-4f9c-a366-f09aab65ea08" name="Changes" comment="camera2 selection option added">
+    <list default="true" id="1e405818-5077-4f9c-a366-f09aab65ea08" name="Changes" comment="camera2 working but only not for 31 missing value">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -108,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715190122557</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="camera2 working but only not for 31 missing value">
+      <created>1715236883681</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715236883681</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -117,6 +124,7 @@
     <MESSAGE value="manifast file reading method changed" />
     <MESSAGE value="butun hatalar giderildi" />
     <MESSAGE value="camera2 selection option added" />
-    <option name="LAST_COMMIT_MESSAGE" value="camera2 selection option added" />
+    <MESSAGE value="camera2 working but only not for 31 missing value" />
+    <option name="LAST_COMMIT_MESSAGE" value="camera2 working but only not for 31 missing value" />
   </component>
 </project>

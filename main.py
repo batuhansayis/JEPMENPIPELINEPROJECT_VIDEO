@@ -40,7 +40,7 @@ output_folder_name = "JEPMENPIPELINEPROJECT/"
 output_directory_path = enter_directory_path + output_folder_name
 input_directory_path = enter_directory_path + input_folder_name
 input_directory_path2 = onedrivepath
-main_loop_start_count = 31
+main_loop_start_count = 0
 main_loop_end = 42
 # main_loop_end = 3
 cameratype=2
@@ -157,12 +157,15 @@ def cut_video(videofile_name,destination_path,manifest_path):
         source_path = os.getcwd()
         nameoffiletobecropted = findmp4 (source_path)
         print ('TO BE CROPTED')
-        print (nameoffiletobecropted)
-        a = "ffmpeg -i " + nameoffiletobecropted + " -vf" + " \"crop=" + cropvalue + "\"" + " " + "cropped_" + nameoffiletobecropted
-        print (a)
-        os.system(a)
-        os.remove(nameoffiletobecropted)
-        # ffmpeg -i test.mp4 -vf "crop=850:620:450:0" out.mp4
+        if nameoffiletobecropted == None:
+            print ('nofile')
+        else:
+            print (nameoffiletobecropted)
+            a = "ffmpeg -i " + nameoffiletobecropted + " -vf" + " \"crop=" + cropvalue + "\"" + " " + "cropped_" + nameoffiletobecropted
+            print (a)
+            os.system(a)
+            os.remove(nameoffiletobecropted)
+            # ffmpeg -i test.mp4 -vf "crop=850:620:450:0" out.mp4
 
 
 
