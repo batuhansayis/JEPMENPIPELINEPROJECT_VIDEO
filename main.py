@@ -40,10 +40,14 @@ output_folder_name = "JEPMENPIPELINEPROJECT/"
 output_directory_path = enter_directory_path + output_folder_name
 input_directory_path = enter_directory_path + input_folder_name
 input_directory_path2 = onedrivepath
-main_loop_start_count = 0
-# main_loop_end = 42
-main_loop_end = 3
+main_loop_start_count = 31
+main_loop_end = 42
+# main_loop_end = 3
 cameratype=2
+cropvalue = str(850) + ":" + str(600)+ ":" +str(450) + ":" + str(0)
+cropvalue_text = "950-1080"
+# ffmpeg -i test.mp4 -vf "crop=850:620:450:0" out.mp4
+
 
 video_splitter_path = 'C:/Users/batuhansayis/Desktop/video-splitter-master'
 journal_output_directory = 'C:' + '\\' +  'Users' + '\\' + 'batuhansayis' + '\\' +  'Desktop' + '\\' + 'JEPMEN_JOURNAL_VIDEO_DATASET'
@@ -92,6 +96,16 @@ def create_outputfoldertree(journal_output_directory):
 create_outputfoldertree (journal_output_directory)
 os.chdir(input_directory_path2)
 
+def findmp4(source_path):
+    list = []
+    for x in os.listdir(source_path):
+        if os.path.isfile(x):
+            list.append(str(x))
+    list_mp4 = []
+    for i in range(0, len(list)):
+        if list[i].endswith(".mp4"):
+            # list_mp4.append(list[i])
+            return list[i]
 
 def movemp4(source_path,destination_path):
     list = []
@@ -101,6 +115,17 @@ def movemp4(source_path,destination_path):
     list_mp4 = []
     for i in range(0, len(list)):
         if list[i].endswith(".mp4"):
+            # list_mp4.append(list[i])
+            shutil.move(list[i], destination_path)
+
+def movemp4_2(source_path,destination_path):
+    list = []
+    for x in os.listdir(source_path):
+        if os.path.isfile(x):
+            list.append(str(x))
+    list_mp4 = []
+    for i in range(0, len(list)):
+        if list[i].startswith("cropped_"):
             # list_mp4.append(list[i])
             shutil.move(list[i], destination_path)
 
@@ -124,9 +149,25 @@ def cut_video(videofile_name,destination_path,manifest_path):
 
 
     os.chdir(video_splitter_path)
+    if cameratype == 1:
+        os.system("python ffmpeg-split.py -f " + video_path + " -m " + manifest_path)
+    elif cameratype == 2:
 
-    os.system("python ffmpeg-split.py -f " + video_path + " -m " + manifest_path)
+        os.system("python ffmpeg-split.py -f " + video_path + " -m " + manifest_path)
+        source_path = os.getcwd()
+        nameoffiletobecropted = findmp4 (source_path)
+        print ('TO BE CROPTED')
+        print (nameoffiletobecropted)
+        a = "ffmpeg -i " + nameoffiletobecropted + " -vf" + " \"crop=" + cropvalue + "\"" + " " + "cropped_" + nameoffiletobecropted
+        print (a)
+        os.system(a)
+        os.remove(nameoffiletobecropted)
+        # ffmpeg -i test.mp4 -vf "crop=850:620:450:0" out.mp4
+
+
+
     source_path = os.getcwd()
+    print ('this is a source PATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTH')
     print (source_path)
     print(destination_path)
     movemp4(source_path,destination_path)
